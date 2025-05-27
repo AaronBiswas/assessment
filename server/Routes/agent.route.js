@@ -1,10 +1,12 @@
 import express from 'express';
-import { createAgent } from '../Controllers/agent.controller.js';
+import { createAgent, loginAgent } from '../Controllers/agent.controller.js';
 
 const router = express.Router();
 
 
 router.post('/new', createAgent)
+router.post('/login', loginAgent);
+
 
 
 export default router;
