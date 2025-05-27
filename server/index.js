@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "../server/DB/connectDB.js";
 import adminRoutes from "./Routes/admin.route.js";
 import agentRoutes from "../server/Routes/agent.route.js";
+import cors from "cors";
 import { Auth } from "./Middleware/Auth.js";
 
 
@@ -11,14 +12,20 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+connectDB();
+
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}))
 app.use(express.json());
 app.use(cookieParser());
 
 
-connectDB();
-
-app.use("/admin",Auth, adminRoutes);
-app.use("/agent", agentRoutes);
+app.use("/admin", adminRoutes);
+app.use("/agent",Auth, agentRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");

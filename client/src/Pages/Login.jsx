@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const Login = () => {
   const navigate= useNavigate();
@@ -13,12 +15,27 @@ const Login = () => {
     setloginData({ ...loginData, [name]: value });
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically handle the login logic, such as calling an API
+  const handleSubmit =async (e) => {
+    try {
+      e.preventDefault();
+      const url= import.meta.env.VITE_APP_URL;
+      console.log(url);
+      const response= await axios.post(`${url}admin/login`, loginData, { withCredentials: true });
+
+      if (response.status === 200) {
+        toast.success(`Login successful!`);
+        navigate("/");
+      }
+      else{
+        toast.error("Login failed. Please check your credentials.");
+        return;
+      }
+
     console.log("Login data submitted:", loginData);
-    // For now, we'll just navigate to the Home page
-    navigate("/");
+    } catch (e) {
+      toast.error("Login failed. Please try again.");
+      console.error("Login error:", e);
+    }
   }
 
   return (
@@ -55,7 +72,6 @@ const Login = () => {
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-            onClick={()=>navigate("/")}
           >
             Login
           </button>
