@@ -40,7 +40,6 @@ export const createAgent = async (req, res) => {
       email,
       password: hashedPassword,
       mobile,
-      role: "agent",
     });
 
     await newAgent.save();
