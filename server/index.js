@@ -8,7 +8,6 @@ import uploadRoutes from "../server/Routes/upload.route.js";
 import cors from "cors";
 import { Auth } from "./Middleware/Auth.js";
 
-
 dotenv.config();
 
 const app = express();
@@ -16,17 +15,20 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
-
-app.use(cors({
-  origin: "https://assessment-2-i4ra.onrender.com",
-  credentials: true,
-}))
+app.use(
+  cors({
+    origin: "https://assessment-2-i4ra.onrender.com",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
 app.use("/admin", adminRoutes);
-app.use("/agent",Auth, agentRoutes);
-app.use("/file",uploadRoutes);
+app.use("/agent", Auth, agentRoutes);
+app.use("/file", uploadRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
