@@ -27,26 +27,28 @@ const Navbar = ({ loggedIn }) => {
     }
   };
   return (
-    <nav className="bg-gray-800 p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <a href="/" className="text-white text-lg font-bold">
-          MyApp
+    <nav className="bg-gray-900 bg-opacity-90 shadow-lg">
+      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="/" className="text-indigo-400 text-2xl font-extrabold tracking-wide drop-shadow">
+          CSTech
         </a>
-        {loggedIn ? (
-          <button
-            onClick={handleLogout}
-            className="text-gray-300 hover:text-white px-3 py-2 bg-transparent border-none cursor-pointer"
-          >
-            Logout
-          </button>
-        ) : (
-          <button
-            onClick={() => navigate("/login")}
-            className="text-gray-300 hover:text-white px-3 py-2 bg-transparent border-none cursor-pointer"
-          >
-            Login
-          </button>
-        )}
+        <div>
+          {loggedIn ? (
+            <button
+              onClick={handleLogout}
+              className="px-5 py-2 bg-indigo-600 text-white rounded-lg font-medium shadow hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            >
+              Logout
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/login")}
+              className="px-5 py-2 bg-indigo-600 text-white rounded-lg font-medium shadow hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            >
+              Login
+            </button>
+          )}
+        </div>
       </div>
     </nav>
   );

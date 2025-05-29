@@ -3,36 +3,32 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const Login = ({setLoggedIn}) => {
-  const navigate= useNavigate();
-    const [loginData,setloginData]=useState({
+const Login = ({ setLoggedIn }) => {
+  const navigate = useNavigate();
+  const [loginData, setloginData] = useState({
     email: "",
     password: ""
-    })
+  })
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setloginData({ ...loginData, [name]: value });
   }
 
-  const handleSubmit =async (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const url= import.meta.env.VITE_APP_URL;
-      console.log(url);
-      const response= await axios.post(`${url}admin/login`, loginData, { withCredentials: true });
+      const url = import.meta.env.VITE_APP_URL;
+      const response = await axios.post(`${url}admin/login`, loginData, { withCredentials: true });
 
       if (response.status === 200) {
         toast.success(`Login successful!`);
         setLoggedIn(true)
         navigate("/");
-      }
-      else{
+      } else {
         toast.error("Login failed. Please check your credentials.");
         return;
       }
-
-    console.log("Login data submitted:", loginData);
     } catch (e) {
       toast.error("Login failed. Please try again.");
       console.error("Login error:", e);
@@ -40,12 +36,12 @@ const Login = ({setLoggedIn}) => {
   }
 
   return (
-    <div>
-      <div>
-        <h1 className="text-3xl font-bold text-center mt-10">Login Page</h1>
-        <form className="max-w-md mx-auto mt-8" onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4">
+      <div className="w-full max-w-md bg-gray-900 bg-opacity-90 rounded-2xl shadow-2xl p-8">
+        <h1 className="text-3xl font-extrabold text-center text-indigo-400 mb-8 drop-shadow-lg">Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-6">
+            <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="email">
               Email
             </label>
             <input
@@ -53,12 +49,14 @@ const Login = ({setLoggedIn}) => {
               name="email"
               placeholder="Enter your email"
               value={loginData.email}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               onChange={handleChange}
+              autoComplete="username"
+              required
             />
           </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <div className="mb-8">
+            <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="password">
               Password
             </label>
             <input
@@ -66,13 +64,15 @@ const Login = ({setLoggedIn}) => {
               name="password"
               placeholder="Enter your password"
               value={loginData.password}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               onChange={handleChange}
+              autoComplete="current-password"
+              required
             />
           </div>
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            className="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium shadow hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           >
             Login
           </button>

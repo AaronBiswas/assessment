@@ -33,3 +33,19 @@ export const createAgent = async (req, res) => {
   }
 };
 
+export const getAgents=async(req,res)=>{
+  const admin=req.user;
+  try {
+    const agents= await Agent.find({admin:admin._id})
+
+    if (!agents || agents.length === 0) {
+      return res.status(404).json({ message: "No Agents available" });
+    }
+
+  return res.status(200).json(agents);
+
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({message:"Internal server error"})
+  }
+}

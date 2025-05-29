@@ -44,61 +44,71 @@ const Add_Agent = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4">
+      <div className="w-full max-w-md bg-gray-900 bg-opacity-90 rounded-2xl shadow-2xl p-8">
+        <h1 className="text-3xl font-extrabold text-center text-indigo-400 mb-8 drop-shadow-lg">Add Agent</h1>
         <form className="gap-4" onSubmit={handleSubmit}>
-          <h1 className="text-3xl font-bold text-center mt-10">Add Agent</h1>
-          <div className="max-w-md mx-auto mt-8 p-6 bg-gray-900 shadow-md rounded-lg">
-            <label className="block mb-4">
-              <span className="text-white">Name</span>
-              <input
-                type="text"
-                name="name"
-                className="mt-1 block w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring focus:ring-blue-500"
-                placeholder="Enter name"
-                value={data.name}
-                onChange={handleChange}
-              />
+          <div className="mb-6">
+            <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="name">
+              Name
             </label>
-            <label className="block mb-4">
-              <span className="text-white">Email</span>
-              <input
-                type="email"
-                name="email"
-                className="mt-1 block w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring focus:ring-blue-500"
-                placeholder="Enter email"
-                value={data.email}
-                onChange={handleChange}
-              />
-            </label>
-            <label className="block mb-4">
-              <span className="text-white">Password</span>
-              <input
-                type="password"
-                name="password"
-                className="mt-1 block w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring focus:ring-blue-500"
-                placeholder="Enter password"
-                value={data.password}
-                onChange={handleChange}
-              />
-            </label>
-            <label className="block mb-4">
-              <span className="text-white">Phone number</span>
-              <PhoneInput
-                defaultCountry="us"
-                name="mobile"
-                value={data.mobile}
-                onChange={(phone) => setData({ ...data, mobile: phone })}
-                inputClassName="w-full px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded focus:outline-none focus:ring focus:ring-blue-500"
-              />
-            </label>
-            <button
-              type="submit"
-              className="w-full px-6 py-2 mt-4 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300"
-            >
-              Add Agent
-            </button>
+            <input
+              type="text"
+              name="name"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="Enter name"
+              value={data.name}
+              onChange={handleChange}
+              required
+            />
           </div>
+          <div className="mb-6">
+            <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="Enter email"
+              value={data.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="password">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              placeholder="Enter password"
+              value={data.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="mb-8">
+            <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="mobile">
+              Phone number
+            </label>
+            <PhoneInput
+              defaultCountry="us"
+              name="mobile"
+              value={data.mobile}
+              onChange={(phone) => setData({ ...data, mobile: phone })}
+              inputClassName="w-full px-3 py-2 bg-gray-800 text-white border border-indigo-700/30 rounded focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium shadow hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          >
+            Add Agent
+          </button>
         </form>
       </div>
     </div>
