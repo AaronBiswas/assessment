@@ -3,22 +3,18 @@ import Admin from "../Models/admin.model.js";
 import jwt from "jsonwebtoken";
 
 const generateTokenandSetCookie = (adminId, res) => {
-  try {
-    const token = jwt.sign({ adminId }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-    res.cookie("jwt", token, {
-      httpOnly: true,
-      secure: true,
-    });
-    return token;
-  } catch (error) {
-    console.log("Error generating token", error);
-    return res.status(500).json({
-      success: false,
-      message: "Error generating token",
-    });
-  }
+  const token = jwt.sign({ adminId }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+  res.cookie("jwt", token, {
+    httpOnly: true,
+    secure: true,
+  });
+  console.log("Error generating token", error);
+  return res.status(500).json({
+    success: false,
+    message: "Error generating token",
+  });
 };
 
 export const login = async (req, res) => {
@@ -30,13 +26,16 @@ export const login = async (req, res) => {
       return res.status(401).json({ message: "User not found" });
     }
 
-    const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
     generateTokenandSetCookie(existingUser._id, res);
-    
+
     return res.status(200).json({ message: "User logged in successfully" });
   } catch (error) {
     console.error("Error checking existing user:", error);
