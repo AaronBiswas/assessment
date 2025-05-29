@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({setLoggedIn}) => {
   const navigate= useNavigate();
     const [loginData,setloginData]=useState({
     email: "",
@@ -24,6 +24,7 @@ const Login = () => {
 
       if (response.status === 200) {
         toast.success(`Login successful!`);
+        setLoggedIn(true)
         navigate("/");
       }
       else{

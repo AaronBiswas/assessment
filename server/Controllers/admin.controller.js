@@ -10,11 +10,6 @@ const generateTokenandSetCookie = (adminId, res) => {
     httpOnly: true,
     secure: true,
   });
-  console.log("Error generating token", error);
-  return res.status(500).json({
-    success: false,
-    message: "Error generating token",
-  });
 };
 
 export const login = async (req, res) => {
@@ -40,6 +35,16 @@ export const login = async (req, res) => {
   } catch (error) {
     console.error("Error checking existing user:", error);
     return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const logout = (req, res) => {
+  try {
+    res.clearCookie("jwt");
+    return res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Error logging out!" });
   }
 };
 

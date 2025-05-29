@@ -1,3 +1,4 @@
+import bcrypt from "bcryptjs";
 import Agent from "../Models/agent.model.js";
 
 
@@ -10,11 +11,17 @@ export const createAgent = async (req, res) => {
       return res.status(400).json({ message: "Agent already exists" });
     }
 
+    const hashedPassword=await bcrypt.hash(password,10)
+
+    if (!hashedPassword) {
+      return res.status(500).json({ message: "Error hashing password" });
+    }
+
     const newAgent = new Agent({
       admin:req.user._id,
       name,
       email,
-      password,
+      password:hashedPassword,
       mobile,
     });
 

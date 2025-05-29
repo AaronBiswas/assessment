@@ -1,5 +1,5 @@
 import express from 'express';
-import { createAdmin, login } from '../Controllers/admin.controller.js';
+import { createAdmin, login, logout } from '../Controllers/admin.controller.js';
 
 const router=express.Router();
 
@@ -7,8 +7,7 @@ const router=express.Router();
 
 router.post("/login",login)
 router.post("/create",createAdmin)
-
-
+router.post("/logout",logout)
 
 
 

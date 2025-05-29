@@ -1,6 +1,6 @@
 
 
-const Home = () => {
+const Home = ({loggedIn}) => {
   return (
     <div>
       <div>
@@ -10,7 +10,7 @@ const Home = () => {
           updates and information.
         </p>
 
-        <div>
+        {loggedIn && <div>
           <div className="max-w-md mx-auto mt-8 p-6 bg-gray-900 shadow-md rounded-lg">
             <h2 className="text-2xl text-white font-semibold">Add Agents</h2>
             <button>
@@ -22,7 +22,7 @@ const Home = () => {
               </a>
             </button>
           </div>
-        </div>
+        </div>}
 
 
       </div>
