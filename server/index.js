@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "../server/DB/connectDB.js";
 import adminRoutes from "./Routes/admin.route.js";
 import agentRoutes from "../server/Routes/agent.route.js";
+import uploadRoutes from "../server/Routes/upload.route.js";
 import cors from "cors";
 import { Auth } from "./Middleware/Auth.js";
 
@@ -26,6 +27,7 @@ app.use(cookieParser());
 
 app.use("/admin", adminRoutes);
 app.use("/agent",Auth, agentRoutes);
+app.use("/file",uploadRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello, World!");
