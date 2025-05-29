@@ -45,52 +45,52 @@ const Add_Agent = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4">
-      <div className="w-full max-w-md bg-gray-900 bg-opacity-90 rounded-2xl shadow-2xl p-8">
-        <h1 className="text-3xl font-extrabold text-center text-indigo-400 mb-8 drop-shadow-lg">Add Agent</h1>
+      <div className="w-full max-w-md bg-gray-900 bg-opacity-90 rounded-2xl shadow-2xl p-6 md:p-8 mx-3">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-center text-indigo-400 mb-6 md:mb-8 drop-shadow-lg">Add Agent</h1>
         <form className="gap-4" onSubmit={handleSubmit}>
-          <div className="mb-6">
+          <div className="mb-5 md:mb-6">
             <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="name">
               Name
             </label>
             <input
               type="text"
               name="name"
-              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-2 md:py-3 px-3 md:px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               placeholder="Enter name"
               value={data.name}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-5 md:mb-6">
             <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="email">
               Email
             </label>
             <input
               type="email"
               name="email"
-              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-2 md:py-3 px-3 md:px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               placeholder="Enter email"
               value={data.email}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-5 md:mb-6">
             <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="password">
               Password
             </label>
             <input
               type="password"
               name="password"
-              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-2 md:py-3 px-3 md:px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               placeholder="Enter password"
               value={data.password}
               onChange={handleChange}
               required
             />
           </div>
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="mobile">
               Phone number
             </label>
@@ -105,7 +105,7 @@ const Add_Agent = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium shadow hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full py-2 md:py-3 bg-indigo-600 text-white rounded-lg font-medium shadow hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           >
             Add Agent
           </button>

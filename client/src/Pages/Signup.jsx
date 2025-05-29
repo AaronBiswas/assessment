@@ -36,10 +36,10 @@ const Signup = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4">
-      <div className="w-full max-w-md bg-gray-900 bg-opacity-90 rounded-2xl shadow-2xl p-8">
-        <h1 className="text-3xl font-extrabold text-center text-indigo-400 mb-8 drop-shadow-lg">Sign Up</h1>
+      <div className="w-full max-w-md bg-gray-900 bg-opacity-90 rounded-2xl shadow-2xl p-6 md:p-8 mx-3">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-center text-indigo-400 mb-6 md:mb-8 drop-shadow-lg">Sign Up</h1>
         <form onSubmit={handleSubmit}>
-          <div className="mb-6">
+          <div className="mb-5 md:mb-6">
             <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="name">
               Name
             </label>
@@ -48,13 +48,13 @@ const Signup = () => {
               name="name"
               placeholder="Enter your name"
               value={signupData.name}
-              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-2 md:py-3 px-3 md:px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               onChange={handleChange}
               autoComplete="name"
               required
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-5 md:mb-6">
             <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="email">
               Email
             </label>
@@ -63,13 +63,13 @@ const Signup = () => {
               name="email"
               placeholder="Enter your email"
               value={signupData.email}
-              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-2 md:py-3 px-3 md:px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               onChange={handleChange}
               autoComplete="username"
               required
             />
           </div>
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="password">
               Password
             </label>
@@ -78,7 +78,7 @@ const Signup = () => {
               name="password"
               placeholder="Enter your password"
               value={signupData.password}
-              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-3 px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+              className="shadow appearance-none border border-indigo-700/30 rounded w-full py-2 md:py-3 px-3 md:px-4 text-gray-200 bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               onChange={handleChange}
               autoComplete="new-password"
               required
@@ -86,7 +86,7 @@ const Signup = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium shadow hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="w-full py-2 md:py-3 bg-indigo-600 text-white rounded-lg font-medium shadow hover:bg-indigo-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
           >
             Sign Up
           </button>
