@@ -15,14 +15,12 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
-app.use(
-  cors({
-    origin: "https://assessment-2-i4ra.onrender.com",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.options("*", cors({
+  origin: "https://assessment-2-i4ra.onrender.com",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use(express.json());
 app.use(cookieParser());
 
