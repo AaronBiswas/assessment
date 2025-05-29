@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home.jsx";
-import Login from "./pages/Login.jsx";
+import Login from "./Pages/Login.jsx";
 import Navbar from "./Components/Navbar.jsx";
 import { ToastContainer } from "react-toastify";
 import Add_Agent from "./Pages/Add_Agent.jsx";
