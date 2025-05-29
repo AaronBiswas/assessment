@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Navbar from "./Components/Navbar";
+import Home from "./Pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Navbar from "./Components/Navbar.jsx";
 import { ToastContainer } from "react-toastify";
-import Add_Agent from "./Pages/Add_Agent";
+import Add_Agent from "./Pages/Add_Agent.jsx";
 import { useEffect, useState } from "react";
-import Upload from "./Pages/Upload";
+import Upload from "./Pages/Upload.jsx";
 import axios from "axios";
-import Signup from "./Pages/Signup";
+import Signup from "./Pages/Signup.jsx";
 
 const App = () => {
   const[loggedIn,setLoggedIn]=useState(false)
