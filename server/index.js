@@ -18,7 +18,7 @@ connectDB();
 
 
 app.use(cors({
-  origin: "http://localhost:5173,https://assessment-2-i4ra.onrender.com",
+  origin: "https://assessment-2-i4ra.onrender.com",
   credentials: true,
 }))
 app.use(express.json());
