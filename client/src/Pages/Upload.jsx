@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Upload = () => {
+const Upload = ({setData}) => {
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("");
 
@@ -26,6 +26,7 @@ const Upload = () => {
       );
       setStatus("Upload successful!");
       console.log(res.data);
+      setData(res.data.data);
     } catch (err) {
       setStatus("Upload failed.");
       console.error(err.response?.data || err.message);

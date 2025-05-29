@@ -24,7 +24,6 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-
 app.use("/admin", adminRoutes);
 app.use("/agent",Auth, agentRoutes);
 app.use("/file",uploadRoutes);
