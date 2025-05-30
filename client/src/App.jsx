@@ -34,7 +34,7 @@ const App = () => {
         <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />}  />
          <Route path="/admin/create" element={<Signup />} />
         <Route path="/add-agent" element={<Add_Agent />} />
-        <Route path="/file/upload" element={<Upload/>} />
+        <Route path="/file/upload" element={<Upload setData={() => {}} />} />
       </Routes>
       <ToastContainer />
     </div>
