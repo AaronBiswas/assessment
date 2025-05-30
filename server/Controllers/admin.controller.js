@@ -94,8 +94,10 @@ export const createAdmin = async (req, res) => {
 
     await newAdmin.save();
 
-    console.log("Admin created successfully:", newAdmin);
-    return res.status(201).json({ message: "Admin created successfully" });
+     generateTokenandSetCookie(newAdmin._id, res);
+
+     console.log("Admin created successfully:", newAdmin);
+    return res.status(201).json({ message: "Admin created and logged in successfully",});
   } catch (error) {
     console.error("Error creating admin:", error);
     return res.status(500).json({ message: "Internal server error" });
