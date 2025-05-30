@@ -10,11 +10,11 @@ const generateTokenandSetCookie = (adminId, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    maxAge: 3600000
+    maxAge: 3600000,
   });
 };
 
-export const verify =  async (req, res) => {
+export const verify = async (req, res) => {
   try {
     const token = req.cookies.jwt;
 
@@ -31,12 +31,12 @@ export const verify =  async (req, res) => {
         .status(401)
         .json({ error: "Agent not found, please login again" });
     }
-    return res.status(200).json({user:admin})
+    return res.status(200).json({ user: admin });
   } catch (error) {
     console.error("Authentication error:", error);
     return res.status(500).json({ error: "Internal server error" });
   }
-}
+};
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -66,7 +66,11 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   try {
-    res.clearCookie("jwt");
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
     return res.status(200).json({ message: "Logged out successfully" });
   } catch (error) {
     console.log(error);
@@ -96,10 +100,12 @@ export const createAdmin = async (req, res) => {
 
     await newAdmin.save();
 
-     generateTokenandSetCookie(newAdmin._id, res);
+    generateTokenandSetCookie(newAdmin._id, res);
 
-     console.log("Admin created successfully:", newAdmin);
-    return res.status(201).json({ message: "Admin created and logged in successfully",});
+    console.log("Admin created successfully:", newAdmin);
+    return res
+      .status(201)
+      .json({ message: "Admin created and logged in successfully" });
   } catch (error) {
     console.error("Error creating admin:", error);
     return res.status(500).json({ message: "Internal server error" });
