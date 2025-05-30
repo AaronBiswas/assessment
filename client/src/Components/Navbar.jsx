@@ -40,7 +40,6 @@ const Navbar = ({ loggedIn }) => {
           CSTech
         </a>
         
-        {/* Mobile menu button */}
         <div className="md:hidden">
           <button 
             onClick={toggleMenu}
@@ -62,7 +61,6 @@ const Navbar = ({ loggedIn }) => {
           </button>
         </div>
 
-        {/* Desktop menu */}
         <div className="hidden md:block">
           {loggedIn ? (
             <button
@@ -82,7 +80,6 @@ const Navbar = ({ loggedIn }) => {
         </div>
       </div>
 
-      {/* Mobile menu dropdown */}
       {isMenuOpen && (
         <div className="md:hidden bg-gray-800 py-2 px-4 shadow-inner">
           {loggedIn ? (

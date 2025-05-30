@@ -26,7 +26,7 @@ const Upload = ({setData}) => {
       );
       setStatus("Upload successful!");
       console.log(res.data);
-      setData(res.data.data);
+      setData(res.data);
     } catch (err) {
       setStatus("Upload failed.");
       console.error(err.response?.data || err.message);
