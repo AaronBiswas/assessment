@@ -3,6 +3,7 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 import { Upload } from "../Controllers/upload.controller.js";
+import { Auth } from "../Middleware/Auth.js";
 
 const router = express.Router();
 
@@ -32,6 +33,6 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage, fileFilter });
 
-router.post("/upload", upload.single("file"), Upload);
+router.post("/upload", Auth, upload.single("file"), Upload);
 
 export default router;

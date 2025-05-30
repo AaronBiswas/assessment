@@ -5,6 +5,7 @@ import Agent from "../Models/agent.model.js";
 const uploadDir = path.resolve("uploads");
 
 export const Upload = async (req, res) => {
+  const admin = req.user;
   try {
     if (!req.file)
       return res.status(400).json({ success: false, message: "No file uploaded" });
@@ -24,11 +25,7 @@ export const Upload = async (req, res) => {
       return obj;
     });
 
-    const agents = await Agent.find({});
-
-    for (const agent of agents) {
-      agent.tasks = [];
-    }
+    const agents = await Agent.find({ admin: admin._id });
 
     const totalItems = data.length;
     const baseCount = Math.floor(totalItems / agents.length);
@@ -37,13 +34,12 @@ export const Upload = async (req, res) => {
     let index = 0;
     for (let i = 0; i < agents.length; i++) {
       const count = baseCount + (i < remainder ? 1 : 0);
-      agents[i].tasks = data.slice(index, index + count).map(item =>
+      const tasks = data.slice(index, index + count).map(item =>
         Object.values(item).join(",")
       );
+      await Agent.findByIdAndUpdate(agents[i]._id, { $push: { tasks: { $each: tasks } } }, { new: true });
       index += count;
     }
-
-    await Promise.all(agents.map((agent) => agent.save()));
 
     res.status(200).json({ success: true, filename: req.file.filename, distributedCount: totalItems });
   } catch (error) {

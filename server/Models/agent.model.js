@@ -11,7 +11,7 @@ const agentSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     mobile: { type: String, required: true },
-    tasks: [{type: Object}]
+    tasks: [{type: String}]
   },
   { timestamps: true }
 );
