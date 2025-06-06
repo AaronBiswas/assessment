@@ -19,6 +19,7 @@ export const verify = async (req, res) => {
     const token = req.cookies.jwt;
 
     if (!token) {
+      console.log("No Token")
       return res
         .status(401)
         .json({ error: "No token provided, please log in" });

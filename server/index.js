@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/admin", adminRoutes);
-app.use("/agent", Auth, agentRoutes);
+app.use("/agent", agentRoutes);
 app.use("/file", uploadRoutes);
 
 app.get("/", (req, res) => {

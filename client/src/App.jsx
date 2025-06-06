@@ -8,33 +8,55 @@ import { useEffect, useState } from "react";
 import Upload from "./Pages/Upload.jsx";
 import axios from "axios";
 import Signup from "./Pages/Signup.jsx";
+import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 
 const App = () => {
-  const[loggedIn,setLoggedIn]=useState(false)
-  
-  useEffect(()=>{
-    const verifyUser = async() =>{
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const verifyUser = async () => {
       const url = import.meta.env.VITE_APP_URL;
-        const response = await axios.post(`${url}admin/auth`,{}, {
+      const response = await axios.post(
+        `${url}admin/auth`,
+        {},
+        {
           withCredentials: true,
-        });
-        if(response.data.user)
-          setLoggedIn(true)
-        else
-          setLoggedIn(false)
-    }
+        }
+      );
+      if (response.data.user) setLoggedIn(true);
+      else setLoggedIn(false);
+    };
     verifyUser();
-  },[]);
+  }, []);
 
   return (
     <div>
       <Navbar loggedIn={loggedIn} />
       <Routes>
-        <Route path="/" element={<Home loggedIn={loggedIn}/>}  />
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />}  />
-         <Route path="/admin/create" element={<Signup />} />
-        <Route path="/add-agent" element={<Add_Agent />} />
-        <Route path="/file/upload" element={<Upload setData={() => {}} />} />
+        <Route
+          path="/"
+          element={
+              <Home loggedIn={loggedIn} />
+          }
+        />
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
+        <Route path="/admin/create" element={<Signup />} />
+        <Route
+          path="/add-agent"
+          element={
+            <ProtectedRoute>
+              <Add_Agent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/file/upload"
+          element={
+            <ProtectedRoute>
+              <Upload setData={() => {}} />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <ToastContainer />
     </div>
