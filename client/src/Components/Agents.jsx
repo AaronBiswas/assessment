@@ -12,7 +12,6 @@ const Agents = () => {
     if (response.status === 200) {
       console.log("Agents fetched successfully!");
       setAgent(response.data);
-      //   console.log(response.data);
     } else {
       console.log("Error in fetching Agents!");
     }
@@ -54,8 +53,12 @@ const Agents = () => {
                   <li className="text-gray-400 italic text-sm">No tasks assigned.</li>
                 ) : (
                   agents.tasks.map((item, i) => {
-                    // Split the task string by comma
-                    const [name, mobile, note] = item.split(",");
+                    let taskObj = {};
+                    try {
+                      taskObj = JSON.parse(item);
+                    } catch {
+                      taskObj = {};
+                    }
                     return (
                       <li
                         key={i}
@@ -65,19 +68,19 @@ const Agents = () => {
                           <span className="font-semibold text-indigo-300">
                             Name:
                           </span>{" "}
-                          {name}
+                          {taskObj.data?.name || "N/A"}
                         </span>
                         <span>
                           <span className="font-semibold text-indigo-300">
                             Mobile:
                           </span>{" "}
-                          {mobile}
+                          {taskObj.data?.phone || "N/A"}
                         </span>
                         <span>
                           <span className="font-semibold text-indigo-300">
                             Note:
                           </span>{" "}
-                          {note}
+                          {taskObj.data?.note || "N/A"}
                         </span>
                       </li>
                     );

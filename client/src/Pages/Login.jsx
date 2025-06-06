@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-const Login = ({ setLoggedIn }) => {
+const Login = ({ setLoggedIn,loggedIn }) => {
   const navigate = useNavigate();
+  useEffect(() => {
+  if (loggedIn) {
+    navigate("/", { replace: true });
+  }
+}, [loggedIn, navigate]);
+
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""

@@ -1,10 +1,30 @@
 import React, { useState } from "react";
 import { PhoneInput } from "react-international-phone";
-import { isValidPhoneNumber } from "libphonenumber-js";
+import { PhoneNumberUtil } from "google-libphonenumber";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-international-phone/style.css";
 import { useNavigate } from "react-router-dom";
+
+const phoneUtil = PhoneNumberUtil.getInstance();
+
+// const isPhoneValid = (phone) => {
+//   try {
+//     return phoneUtil.isValidNumber(phoneUtil.parseAndKeepRawInput(phone));
+//   } catch (error) {
+//     return false;
+//   }
+// };
+
+const isPhoneValid = (phone) => {
+  try {
+    // Always use "ZZ" to infer region from country code
+    const parsed = phoneUtil.parseAndKeepRawInput(phone, "ZZ");
+    return phoneUtil.isValidNumber(parsed);
+  } catch (error) {
+    return false;
+  }
+};
 
 const Add_Agent = () => {
   const navigate = useNavigate();
@@ -24,7 +44,7 @@ const Add_Agent = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      if (!isValidPhoneNumber(data.mobile)) {
+      if (!isPhoneValid(data.mobile)) {
         setPhoneError("Please enter a valid phone number with country code.");
         return;
       }
